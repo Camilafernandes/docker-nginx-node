@@ -38,7 +38,7 @@ services:
     image: kafernandesdev/docker-node-nginx
     container_name: nginx
     ports:
-      - "8083:80"
+      - "8080:80"
     networks:
       - node-network
     depends_on:
