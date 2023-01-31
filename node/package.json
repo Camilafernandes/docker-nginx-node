@@ -1,0 +1,28 @@
+{
+  "name": "docker-nginx-node",
+  "version": "1.0.0",
+  "description": "Repositório feito para desafio 2 do fullcycle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CamilaFernandes/docker-nginx-node.git"
+  },
+  "author": "Camila Silva Fernandes <camilafernandesdev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Camilafernandes/docker-nginx-node/issues"
+  },
+  "homepage": "https://github.com/CamilaFernandes/docker-nginx-node#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}

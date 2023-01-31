@@ -1,0 +1,52 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    volumes:
+      - type: volume
+        source: mysql-data
+        target: /var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - node-network
+
+  api:
+    build:
+      context: ./node
+    image: kafernandesdev/docker-node-api
+    container_name: api
+    command: ["sh", "-c", "./dockerize -wait tcp://db:3306 && node index.js"]
+    environment:
+      DB_USER: root
+      DB_PASS: root
+      DB_NAME: nodedb
+      DB_PORT: 3306
+      DB_HOST: db
+    networks:
+      - node-network
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: ./nginx
+    image: kafernandesdev/docker-node-nginx
+    container_name: nginx
+    ports:
+      - "8083:80"
+    networks:
+      - node-network
+    depends_on:
+      - api
+
+networks:
+  node-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
